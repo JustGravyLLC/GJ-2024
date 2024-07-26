@@ -5,6 +5,10 @@ public class GameController : MonoBehaviour {
 	[SerializeField]
 	private PlayerCharacter _player;
 	[SerializeField]
+	private Spawner _spawner;
+	[SerializeField]
+	private HorizontalMap _map;
+	[SerializeField]
 	private List<MeshRenderer> _scrollingTerrainMeshes;
 
 	private const float _terrainSpeedScalar = 0.1f;
@@ -14,6 +18,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void Start() {
+		InitGame();
 		StartLevel();
 	}
 
@@ -22,6 +27,11 @@ public class GameController : MonoBehaviour {
 			mesh.material.mainTextureOffset += new Vector2(0f, -_player.forwardVelocity * Time.deltaTime * _terrainSpeedScalar);
 		}
 	}
+
+	private void InitGame() {
+		_spawner.Initialize();
+		_map.Initialize();
+    }
 
 	private void StartLevel() {
 		_player.movementEnabled = true;
