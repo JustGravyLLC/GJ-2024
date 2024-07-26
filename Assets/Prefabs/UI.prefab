@@ -233,6 +233,16 @@ MonoBehaviour:
   finishMount: {fileID: 7226776123873220370}
   avatar: {fileID: 8632462400185767338}
   checkpointMarker: {fileID: 3693195999227190028, guid: 6006b6dd912127741bcb02df2e802e29, type: 3}
+  checkpoints:
+  - distance: 100
+    time: 20
+    location: 0
+  - distance: 300
+    time: 50
+    location: 0
+  - distance: 1000
+    time: 70
+    location: 0
 --- !u!1 &6195879011278133306
 GameObject:
   m_ObjectHideFlags: 0

@@ -892,15 +892,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3162639539713479358, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.280602
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3162639539713479358, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.3274245
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3162639539713479358, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.7280571
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3162639539713479358, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -935,45 +935,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 352814688}
     - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _interactableSpawnDictionary._pairs.Array.size
-      value: 2
+      propertyPath: _spawnParams.Array.data[0].horizontalMax
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _interactableSpawnDictionary._pairs.Array.data[0]._key
-      value: 
-      objectReference: {fileID: 6929487540643437494, guid: b9226bf1e35c49042acbb506c004a44f, type: 3}
-    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _interactableSpawnDictionary._pairs.Array.data[1]._key
-      value: 
-      objectReference: {fileID: 8266176555278308555, guid: 25c7c1adcc0739d4aa9295abdb9cf2ec, type: 3}
-    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _interactableSpawnDictionary._pairs.Array.data[0]._value
-      value: 8
+      propertyPath: _spawnParams.Array.data[0].horizontalMin
+      value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _interactableSpawnDictionary._pairs.Array.data[1]._value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _interactableSpawnDictionary._pairs.Array.data[0]._key.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _interactableSpawnDictionary._pairs.Array.data[1]._key.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _interactableSpawnDictionary._pairs.Array.data[0]._key.Array.data[0]
-      value: 
-      objectReference: {fileID: 6929487540643437494, guid: b9226bf1e35c49042acbb506c004a44f, type: 3}
-    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _interactableSpawnDictionary._pairs.Array.data[1]._key.Array.data[0]
-      value: 
-      objectReference: {fileID: 5779135010627048950, guid: 83a2db69e845b8d468a96a31f8b2cbf7, type: 3}
-    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _interactableSpawnDictionary._pairs.Array.data[1]._key.Array.data[1]
-      value: 
-      objectReference: {fileID: 8266176555278308555, guid: 25c7c1adcc0739d4aa9295abdb9cf2ec, type: 3}
     - target: {fileID: 8130710023584031413, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
       propertyPath: m_Name
       value: Spawner
@@ -1074,34 +1042,6 @@ PrefabInstance:
     - target: {fileID: 3661834909237680025, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418713684711875778, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
-      propertyPath: checkpoints.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418713684711875778, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
-      propertyPath: checkpoints.Array.data[0].time
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418713684711875778, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
-      propertyPath: checkpoints.Array.data[1].time
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418713684711875778, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
-      propertyPath: checkpoints.Array.data[2].time
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418713684711875778, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
-      propertyPath: checkpoints.Array.data[0].distance
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418713684711875778, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
-      propertyPath: checkpoints.Array.data[1].distance
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418713684711875778, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
-      propertyPath: checkpoints.Array.data[2].distance
-      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
