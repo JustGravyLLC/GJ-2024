@@ -7,6 +7,8 @@ public class GameController : MonoBehaviour {
 	[SerializeField]
 	private Spawner _spawner;
 	[SerializeField]
+	private UIController _UI;
+	[SerializeField]
 	private CheckpointMap _map;
 	[SerializeField]
 	private CheckpointPanel _checkpointPanel;
@@ -41,6 +43,7 @@ public class GameController : MonoBehaviour {
 	private void InitGame() {
 		_spawner.Initialize();
 		_timer.Initialize();
+		_UI.Initialize();
 		_map.Initialize();
 		_checkpointPanel.Initialize();
 		_timer.SetCheckpoint(_map.checkpoints[0]);
@@ -52,7 +55,8 @@ public class GameController : MonoBehaviour {
 		_currentState = GameState.RUNNING;
 	}
 	public void EndLevel(LevelEndReason reason){
-		_currentState = GameState.LOADING;
+		PauseRunner();
+		_UI.ShowEndPanel(reason);
 	}
 
 	private void PauseRunner(GameState state = GameState.MENU) {
