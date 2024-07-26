@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HorizontalMap : MonoBehaviour
+public class CheckpointMap : MonoBehaviour
 {
     [SerializeField]
     private Transform startMount, finishMount;
@@ -12,6 +12,7 @@ public class HorizontalMap : MonoBehaviour
 
     public GameObject checkpointMarker;
     public List<float> checkpoints;
+    private int nextCheckpoint = 0;
 
     public void Initialize()
     {
@@ -28,7 +29,7 @@ public class HorizontalMap : MonoBehaviour
             float x = f / lastCheckpoint;
             x = x * (finishMount.position.x - startMount.position.x);
 
-            marker.transform.position = new Vector2(x, this.transform.position.y);
+            marker.transform.position = new Vector2(x + startMount.position.x, this.transform.position.y);
         }
     }
 
@@ -36,6 +37,13 @@ public class HorizontalMap : MonoBehaviour
     void Update()
     {
         //update avatar position based on distance traveled
+        float l = _gameController.distanceTraveled / checkpoints[checkpoints.Count - 1];
+        avatar.position = new Vector2(l * (finishMount.position.x - startMount.position.x) + startMount.position.x, this.transform.position.y) ;
 
+        if(_gameController.distanceTraveled > checkpoints[nextCheckpoint])
+        {
+            Debug.Log("Checkpoint " + nextCheckpoint + " hit.");
+            nextCheckpoint++;
+        }
     }
 }

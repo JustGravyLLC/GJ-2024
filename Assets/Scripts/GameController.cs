@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour {
 	[SerializeField]
 	private Spawner _spawner;
 	[SerializeField]
-	private HorizontalMap _map;
+	private CheckpointMap _map;
 	[SerializeField]
 	private List<MeshRenderer> _scrollingTerrainMeshes;
 
