@@ -4,27 +4,20 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    //public bool active = false;
-    //public List<RenderObject> renderObjects;
-    //public List<ColliderObject> colliderObjects;
+    public GameObject renderRoot;
+    public GameObject colliderRoot;
 
     public void Initialize()
     {
-       
+        renderRoot.SetActive(true);
+        colliderRoot.SetActive(true);
     }
 
-    public void OnInteract()
+    public void Despawn()
     {
-
+        renderRoot.SetActive(false);
+        colliderRoot.SetActive(false);
     }
-
-    public void Uninitialize()
-    {
-    }
-
-    public void OnDestroy()
-    {
-        
-    }
+    
 }
 

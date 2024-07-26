@@ -15,8 +15,8 @@ public class Spawner : MonoBehaviour
     public float speed = 1f;
 
     //Data
-    public List<List<Interactable>> interactablesDictionary;
     public List<Transform> spawnMounts;
+    public List<Interactable> interactablesPool;
 
     private void Start()
     {
@@ -32,6 +32,24 @@ public class Spawner : MonoBehaviour
         {
             spawnMounts[i].Translate(-d);
         }
+
+        Transform firstMount = spawnMounts[0];
+
+        if (firstMount.position.z < mountD * -1.5f)
+        {
+            //uninitialize the first mount and put it at the back
+            foreach(Interactable i in firstMount.GetComponentsInChildren<Interactable>())
+            {
+                PoolInteractable(i);
+            }
+
+            spawnMounts.RemoveAt(0);
+            Vector3 v = new Vector3(0, 0, spawnMounts[spawnMounts.Count - 1].position.z + mountD);
+            firstMount.position = v;
+            spawnMounts.Add(firstMount);
+
+            SpawnOnMount(firstMount, toSpawn);
+        }
     }
 
     private void InitialSpawn()
@@ -42,13 +60,12 @@ public class Spawner : MonoBehaviour
             mount.transform.parent = this.transform;
             mount.transform.position = new Vector3(0, 0, mountD * i);
             spawnMounts.Add(mount.transform);
-            SpawnOnMount(mount, toSpawn);
+            SpawnOnMount(mount.transform, toSpawn);
         }
     }
 
-    private void SpawnOnMount(GameObject mount, int count)
+    private void SpawnOnMount(Transform mount, int count)
     {
-        //pick random number on x and z for position
         float x = 0;
         float z = 0;
 
@@ -57,19 +74,38 @@ public class Spawner : MonoBehaviour
             x = Random.Range(-mountW, mountW);
             z = Random.value * mountD;
 
-            //spawn there
             Spawn(interactablePrefabs[0], mount, new Vector3(x, 0, z));
         }       
     }
 
-    private Interactable Spawn(Interactable interactable, GameObject mount, Vector3 pos)
+    private Interactable Spawn(Interactable interactable, Transform mount, Vector3 pos)
     {
         Interactable newInteractable = GameObject.Instantiate<Interactable>(interactable);
-        newInteractable.transform.parent = mount.transform;
+        newInteractable.transform.parent = mount;
         newInteractable.transform.localPosition = pos;
         newInteractable.Initialize();
 
         return newInteractable;
+    }
+
+    private void PoolInteractable(Interactable i)
+    {
+        interactablesPool.Add(i);
+        i.Despawn();
+    }
+
+    private Interactable GetInteractable()
+    {
+        Interactable i;
+        if (interactablesPool.Count > 0)
+        {
+            i = interactablesPool[0];
+            interactablesPool.RemoveAt(0);
+        }else
+        {
+            i = GameObject.Instantiate<Interactable>(interactablePrefabs[0]);            
+        }
+        return i;
     }
 }
 
