@@ -4,6 +4,12 @@ public class PlayerCharacter : MonoBehaviour {
 	private const float ANIM_DAMP_TIME_X = .2f;
 	private const float ANIM_DAMP_TIME_Y = .2f;
 
+	private const float MOVE_VOLUME_MIN = 0f;
+	private const float MOVE_VOLUME_MAX = .5f;
+
+	private const float BRAKE_VOLUME_MIN = .5f;
+	private const float BRAKE_VOLUME_MAX = 1f;
+
 	private static KeyCode leftKey => KeyCode.A;
 	private static KeyCode rightKey => KeyCode.D;
 	private static KeyCode backKey => KeyCode.S;
@@ -86,12 +92,20 @@ public class PlayerCharacter : MonoBehaviour {
 		}
 
 		//Brake
+		if (Input.GetKeyUp(backKey)) {
+			_brakeSound.Stop();
+		}
+		if (Input.GetKeyDown(backKey)) {
+			_brakeSound.Play();
+		}
+
 		if (Input.GetKey(backKey)) {
 			if (_forwardVelocity > _forwardVelocityMin) {
+				float oldVelocity = _forwardVelocity;
 				_forwardVelocity = Mathf.Max(_forwardVelocity - Mathf.Lerp(_brakeDecelerationBase, _brakeDecelerationFull, Mathf.Abs(sideInputFactor)) * Time.deltaTime, _forwardVelocityMin);
-				if (!_brakeSound.isPlaying) {
-					_brakeSound.Play();
-				}
+				_brakeSound.volume = Mathf.Lerp(BRAKE_VOLUME_MIN, BRAKE_VOLUME_MAX, (oldVelocity - _forwardVelocity) / _brakeDecelerationFull);
+			} else {
+				_brakeSound.volume = BRAKE_VOLUME_MIN;
 			}
 			_anim.SetFloat("MoveY", -1f, ANIM_DAMP_TIME_Y, Time.deltaTime);
 		} else {
@@ -112,6 +126,6 @@ public class PlayerCharacter : MonoBehaviour {
 		_anim.SetFloat("MoveX", sideInputFactor, ANIM_DAMP_TIME_X, Time.deltaTime);
 
 		//Sound
-		_moveSound.volume = Mathf.InverseLerp(_forwardVelocityMin, _forwardVelocityMax, _forwardVelocity);
+		_moveSound.volume = Mathf.Lerp(MOVE_VOLUME_MIN, MOVE_VOLUME_MAX, Mathf.InverseLerp(_forwardVelocityMin, _forwardVelocityMax, _forwardVelocity));
 	}
 }
