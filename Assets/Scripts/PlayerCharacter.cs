@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour {
@@ -9,6 +10,9 @@ public class PlayerCharacter : MonoBehaviour {
 
 	private const float BRAKE_VOLUME_MIN = .5f;
 	private const float BRAKE_VOLUME_MAX = 1f;
+
+	private const float MOVE_PARTICLE_RATE_MAX = 300f;
+	private const float BRAKE_PARTICLE_RATE_MAX = 300f;
 
 	private static KeyCode leftKey => KeyCode.A;
 	private static KeyCode rightKey => KeyCode.D;
@@ -37,6 +41,10 @@ public class PlayerCharacter : MonoBehaviour {
 	private AudioSource _moveSound;
 	[SerializeField]
 	private AudioSource _brakeSound;
+	[SerializeField]
+	private List<ParticleSystem> _moveParticles;
+	[SerializeField]
+	private List<ParticleSystem> _brakeParticles;
 
 	public float forwardVelocity => _forwardVelocity;
 	public float horizontalVelocity => _horizontalVelocity;
@@ -104,13 +112,26 @@ public class PlayerCharacter : MonoBehaviour {
 				float oldVelocity = _forwardVelocity;
 				_forwardVelocity = Mathf.Max(_forwardVelocity - Mathf.Lerp(_brakeDecelerationBase, _brakeDecelerationFull, Mathf.Abs(sideInputFactor)) * Time.deltaTime, _forwardVelocityMin);
 				_brakeSound.volume = Mathf.Lerp(BRAKE_VOLUME_MIN, BRAKE_VOLUME_MAX, (oldVelocity - _forwardVelocity) / _brakeDecelerationFull);
+
+				foreach (ParticleSystem emitter in _brakeParticles) {
+					var emissionModule = emitter.emission;
+					emissionModule.rateOverTime = BRAKE_PARTICLE_RATE_MAX * Mathf.InverseLerp(_forwardVelocityMin, _forwardVelocityMax, forwardVelocity);
+				}
 			} else {
+				foreach (ParticleSystem emitter in _brakeParticles) {
+					var emissionModule = emitter.emission;
+					emissionModule.rateOverTime = 0f;
+				}
 				_brakeSound.volume = BRAKE_VOLUME_MIN;
 			}
 			_anim.SetFloat("MoveY", -1f, ANIM_DAMP_TIME_Y, Time.deltaTime);
 		} else {
 			if (_forwardVelocity < _forwardVelocityMax) {
 				_forwardVelocity = Mathf.Min(_forwardVelocity + _forwardAcceleration * Time.deltaTime, _forwardVelocityMax);
+			}
+			foreach (ParticleSystem emitter in _brakeParticles) {
+				var emissionModule = emitter.emission;
+				emissionModule.rateOverTime = 0f;
 			}
 			_anim.SetFloat("MoveY", 0f, ANIM_DAMP_TIME_Y, Time.deltaTime);
 		}
@@ -124,6 +145,13 @@ public class PlayerCharacter : MonoBehaviour {
 
 		//Animation
 		_anim.SetFloat("MoveX", sideInputFactor, ANIM_DAMP_TIME_X, Time.deltaTime);
+		foreach (ParticleSystem emitter in _moveParticles) {
+			var emissionModule = emitter.emission;
+			emissionModule.rateOverTime = MOVE_PARTICLE_RATE_MAX * Mathf.InverseLerp(_forwardVelocityMin, _forwardVelocityMax, forwardVelocity);
+
+			var velocityModule = emitter.velocityOverLifetime;
+			velocityModule.z = -forwardVelocity;
+		}
 
 		//Sound
 		_moveSound.volume = Mathf.Lerp(MOVE_VOLUME_MIN, MOVE_VOLUME_MAX, Mathf.InverseLerp(_forwardVelocityMin, _forwardVelocityMax, _forwardVelocity));
