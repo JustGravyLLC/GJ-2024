@@ -15,7 +15,6 @@ public class ColliderObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("collision enter");
         if(initialized)
         {
             parent.OnInteract();

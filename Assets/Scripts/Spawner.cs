@@ -15,11 +15,19 @@ public class Spawner : MonoBehaviour
     public float speed = 1f;
 
     //Data
-    public List<Transform> spawnMounts;
-    public List<Interactable> interactablesPool;
+    private List<Interactable> interactablesPool;
+    private List<EnvironmentSet> environmentSets;
+
+    private struct EnvironmentSet
+    {
+        public Transform mount;
+        public List<Interactable> interactables;
+    }
 
     private void Start()
     {
+        environmentSets = new List<EnvironmentSet>();
+        interactablesPool = new List<Interactable>();
         InitialSpawn();
     }
 
@@ -28,12 +36,13 @@ public class Spawner : MonoBehaviour
         float offset = speed * Time.deltaTime * _playerCharacter.forwardVelocity;
         Vector3 d = new Vector3(0, 0, offset);
 
-        for (int i = 0; i < spawnMounts.Count; i++)
+        foreach(EnvironmentSet e in environmentSets)
         {
-            spawnMounts[i].Translate(-d);
+            e.mount.Translate(-d);
         }
+    
 
-        Transform firstMount = spawnMounts[0];
+        Transform firstMount = environmentSets[0].mount;
 
         if (firstMount.position.z < mountD * -1.5f)
         {
@@ -43,10 +52,11 @@ public class Spawner : MonoBehaviour
                 PoolInteractable(i);
             }
 
-            spawnMounts.RemoveAt(0);
-            Vector3 v = new Vector3(0, 0, spawnMounts[spawnMounts.Count - 1].position.z + mountD);
+            EnvironmentSet es = environmentSets[0];
+            environmentSets.RemoveAt(0);
+            Vector3 v = new Vector3(0, 0, environmentSets[environmentSets.Count - 1].mount.position.z + mountD);
             firstMount.position = v;
-            spawnMounts.Add(firstMount);
+            environmentSets.Add(es);
 
             SpawnOnMount(firstMount, toSpawn);
         }
@@ -56,11 +66,13 @@ public class Spawner : MonoBehaviour
     {
         for(int i = 0; i < mountCount; i++)
         {
-            GameObject mount = new GameObject();
-            mount.transform.parent = this.transform;
-            mount.transform.position = new Vector3(0, 0, mountD * i);
-            spawnMounts.Add(mount.transform);
-            SpawnOnMount(mount.transform, toSpawn);
+            Transform mount = new GameObject().transform;
+
+            mount.parent = this.transform;
+            mount.position = new Vector3(0, 0, mountD * i);
+            environmentSets.Add(new EnvironmentSet { mount = mount, interactables = new List<Interactable>()});
+
+            SpawnOnMount(mount, toSpawn);
         }
     }
 
