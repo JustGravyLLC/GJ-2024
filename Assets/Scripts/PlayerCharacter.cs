@@ -1,6 +1,9 @@
 using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour {
+	private const float ANIM_DAMP_TIME_X = .2f;
+	private const float ANIM_DAMP_TIME_Y = .5f;
+
 	private static KeyCode leftKey => KeyCode.A;
 	private static KeyCode rightKey => KeyCode.D;
 	private static KeyCode backKey => KeyCode.S;
@@ -12,15 +15,18 @@ public class PlayerCharacter : MonoBehaviour {
 	private float _forwardVelocity = 2f;
 	private float _horizontalVelocity = 0f;
 
-	private float _forwardAcceleration = 2f;
+	private float _forwardAcceleration = 4f;
 	private float _brakeDecelerationBase = 0f;
 	private float _brakeDecelerationFull = 8f;
 	private float _horizontalAcceleration = 12f;
 	private float _horizontalDeceleration = 8f;
 
 	private float _forwardVelocityMin = .2f;
-	private float _forwardVelocityMax = 20f;
+	private float _forwardVelocityMax = 24f;
 	private float _horizontalVelocityMax = 8f;
+
+	[SerializeField]
+	private Animator _anim;
 
 	public float forwardVelocity => _forwardVelocity;
 	public float horizontalVelocity => _horizontalVelocity;
@@ -62,10 +68,12 @@ public class PlayerCharacter : MonoBehaviour {
 			if (_forwardVelocity > _forwardVelocityMin) {
 				_forwardVelocity = Mathf.Max(_forwardVelocity - Mathf.Lerp(_brakeDecelerationBase, _brakeDecelerationFull, Mathf.Abs(sideInputFactor)) * Time.deltaTime, _forwardVelocityMin);
 			}
+			_anim.SetFloat("MoveY", -1f, ANIM_DAMP_TIME_Y, Time.deltaTime);
 		} else {
 			if (_forwardVelocity < _forwardVelocityMax) {
 				_forwardVelocity = Mathf.Min(_forwardVelocity + _forwardAcceleration * Time.deltaTime, _forwardVelocityMax);
 			}
+			_anim.SetFloat("MoveY", 0f, ANIM_DAMP_TIME_Y, Time.deltaTime);
 		}
 
 		//Side motion
@@ -74,5 +82,8 @@ public class PlayerCharacter : MonoBehaviour {
 			pos.x = Mathf.Clamp(pos.x + _horizontalVelocity * Time.deltaTime, _minX, _maxX);
 			transform.localPosition = pos;
 		}
+
+		//Animation
+		_anim.SetFloat("MoveX", sideInputFactor, ANIM_DAMP_TIME_X, Time.deltaTime);
 	}
 }
