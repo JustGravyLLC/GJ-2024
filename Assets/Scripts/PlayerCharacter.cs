@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour {
-	private const float ANIM_DAMP_TIME_X = .5f;
+	private const float ANIM_DAMP_TIME_X = .2f;
 	private const float ANIM_DAMP_TIME_Y = .5f;
 
 	private static KeyCode leftKey => KeyCode.A;
@@ -15,14 +15,14 @@ public class PlayerCharacter : MonoBehaviour {
 	private float _forwardVelocity = 2f;
 	private float _horizontalVelocity = 0f;
 
-	private float _forwardAcceleration = 2f;
+	private float _forwardAcceleration = 4f;
 	private float _brakeDecelerationBase = 0f;
 	private float _brakeDecelerationFull = 8f;
 	private float _horizontalAcceleration = 12f;
 	private float _horizontalDeceleration = 8f;
 
 	private float _forwardVelocityMin = .2f;
-	private float _forwardVelocityMax = 20f;
+	private float _forwardVelocityMax = 24f;
 	private float _horizontalVelocityMax = 8f;
 
 	[SerializeField]
