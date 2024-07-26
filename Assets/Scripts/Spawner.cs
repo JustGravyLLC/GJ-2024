@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
 {
     //Refs
     public PlayerCharacter _playerCharacter;
-    public SerializableDictionary<Interactable, int> _interactableSpawnDictionary;
+    public SerializableDictionary<List<Interactable>, int> _interactableSpawnDictionary;
 
     //Fields
     public float mountW, mountD = 100f;
@@ -78,15 +78,18 @@ public class Spawner : MonoBehaviour
     {
         float x, z;
 
-        foreach(Interactable interactable in _interactableSpawnDictionary.Dictionary.Keys)
+        foreach(List<Interactable> interactables in _interactableSpawnDictionary.Dictionary.Keys)
         {
-            for (int i = 0; i < _interactableSpawnDictionary.Get(interactable); i++)
+            //pick random interactable in list to spawn
+            Interactable interactable = interactables[Random.Range(0, interactables.Count)];
+
+            for (int i = 0; i < _interactableSpawnDictionary.Get(interactables); i++)
             {
                 x = Random.Range(-mountW, mountW);
                 z = Random.value * mountD;
 
                 Spawn(interactable, mount, new Vector3(x, 0, z));
-            }
+            }    
         }     
     }
 
