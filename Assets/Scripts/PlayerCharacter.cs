@@ -49,7 +49,7 @@ public class PlayerCharacter : MonoBehaviour {
 	public float forwardVelocity => _forwardVelocity;
 	public float horizontalVelocity => _horizontalVelocity;
 
-	private bool _movementEnabled = false;
+	private bool _movementEnabled = true;
 	public bool movementEnabled {
 		get { return _movementEnabled; }
 		set {
@@ -60,14 +60,36 @@ public class PlayerCharacter : MonoBehaviour {
 			_moveSound.volume = 0f;
 			if (value) {
 				_moveSound.Play();
+				foreach (ParticleSystem emitter in _moveParticles) {
+					emitter.Play();
+				}
+				foreach (ParticleSystem emitter in _brakeParticles) {
+					emitter.Play();
+				}
 			} else {
 				_moveSound.Stop();
 				_brakeSound.Stop();
+				foreach (ParticleSystem emitter in _moveParticles) {
+					emitter.Pause();
+				}
+				foreach (ParticleSystem emitter in _brakeParticles) {
+					emitter.Pause();
+				}
 			}
 		}
 	}
 
+	private void Awake() {
+		movementEnabled = false;
+	}
+
 	private void Update() {
+		if (movementEnabled) {
+			UpdateMovement();
+		}
+	}
+
+	private void UpdateMovement() {
 		float sideInputFactor = 0f;
 
 		if (Input.GetKey(leftKey)) {
