@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderRoot: {fileID: 5534707146773596034}
-  colliderRoot: {fileID: 5522719060907043940}
+  colliderRoot: {fileID: 1351539114304867198}
 --- !u!1 &5522719060907043940
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,6 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5894086161765945292}
   - component: {fileID: 951296086205402261}
+  - component: {fileID: 1351539114304867198}
   m_Layer: 0
   m_Name: ColliderRoot
   m_TagString: Untagged
@@ -74,8 +75,8 @@ Transform:
   m_GameObject: {fileID: 5522719060907043940}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.845, z: 0}
-  m_LocalScale: {x: 0.7643, y: 4.7679324, z: 2.14432}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalScale: {x: 0.7643, y: 3.04, z: 2.14432}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3145271808151758365}
@@ -95,7 +96,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -103,6 +104,18 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1351539114304867198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5522719060907043940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610008b949ae09545acfd58977644da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5534707146773596034
 GameObject:
   m_ObjectHideFlags: 0

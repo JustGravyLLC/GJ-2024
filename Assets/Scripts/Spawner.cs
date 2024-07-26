@@ -66,8 +66,7 @@ public class Spawner : MonoBehaviour
 
     private void SpawnOnMount(Transform mount, int count)
     {
-        float x = 0;
-        float z = 0;
+        float x, z;
 
         for (int i = 0; i < count; i++)
         {
@@ -83,12 +82,12 @@ public class Spawner : MonoBehaviour
         Interactable newInteractable = GameObject.Instantiate<Interactable>(interactable);
         newInteractable.transform.parent = mount;
         newInteractable.transform.localPosition = pos;
-        newInteractable.Initialize();
+        newInteractable.Initialize(this);
 
         return newInteractable;
     }
 
-    private void PoolInteractable(Interactable i)
+    public void PoolInteractable(Interactable i)
     {
         interactablesPool.Add(i);
         i.Despawn();
