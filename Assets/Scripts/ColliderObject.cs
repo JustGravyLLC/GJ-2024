@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class ColliderObject : MonoBehaviour
 {
-    public bool collidable = false;
-    public List<Collider> colliders;
-    public void Initialize()
-    {
+    Interactable parent;
+    bool initialized = false;
 
+    private void Start()
+    {
+        parent = this.transform.parent.GetComponent<Interactable>();
+        initialized = true;
     }
 
-    public void Unitialize()
+    private void OnTriggerEnter(Collider collider)
     {
-
+        Debug.Log("collision enter");
+        if(initialized)
+        {
+            parent.OnInteract();
+        }        
     }
 }
