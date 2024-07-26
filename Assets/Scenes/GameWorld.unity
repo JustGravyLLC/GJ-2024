@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -400,6 +401,7 @@ MonoBehaviour:
   _player: {fileID: 352814688}
   _spawner: {fileID: 230168692}
   _map: {fileID: 315915703}
+  _checkpointPanel: {fileID: 770851682}
   _timer: {fileID: 273254308}
   _scrollingTerrainMeshes:
   - {fileID: 87255803}
@@ -519,6 +521,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd03c963ab65ea04cb1dd83437f47ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &770851682 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3903056180087397084, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
+  m_PrefabInstance: {fileID: 6475245973686086339}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14fd3b093774a4d41b0effb11d210721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &996179695
@@ -707,6 +720,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1893096339 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1117673057446309676, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
+  m_PrefabInstance: {fileID: 6475245973686086339}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1903880704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,6 +1060,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3903056180087397084, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
+      propertyPath: panelObject
+      value: 
+      objectReference: {fileID: 1893096339}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

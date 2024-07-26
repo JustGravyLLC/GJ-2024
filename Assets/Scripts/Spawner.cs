@@ -6,6 +6,7 @@ using SerializableDictionary.Scripts;
 public class Spawner : MonoBehaviour
 {
     //Refs
+    private GameController _gameController;
     public PlayerCharacter _playerCharacter;
     public List<SpawnParams> _spawnParams;
 
@@ -26,6 +27,8 @@ public class Spawner : MonoBehaviour
 
     public void Initialize()
     {
+        _gameController = GameObject.FindFirstObjectByType<GameController>();
+
         _environmentSets = new List<EnvironmentSet>();
         InitialSpawn();
         initialized = true;
@@ -34,6 +37,7 @@ public class Spawner : MonoBehaviour
     private void Update()
     {
         if (!initialized) return;
+        if (_gameController.currentState != GameState.RUNNING) return;
 
         float offset = speed * Time.deltaTime * _playerCharacter.forwardVelocity;
         Vector3 d = new Vector3(0, 0, offset);
@@ -41,8 +45,7 @@ public class Spawner : MonoBehaviour
         foreach(EnvironmentSet e in _environmentSets)
         {
             e.mount.Translate(-d);
-        }
-    
+        }   
 
         Transform firstMount = _environmentSets[0].mount;
 

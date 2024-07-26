@@ -9,10 +9,13 @@ public class GameController : MonoBehaviour {
 	[SerializeField]
 	private CheckpointMap _map;
 	[SerializeField]
+	private CheckpointPanel _checkpointPanel;
+	[SerializeField]
 	private Timer _timer;
 	[SerializeField]
 	private List<MeshRenderer> _scrollingTerrainMeshes;
-
+	private GameState _currentState = GameState.LOADING;
+	public GameState currentState => _currentState;
 	private const float _terrainSpeedScalar = 0.1f;
 
 	public float distanceTraveled { get; private set; } = 0f;
@@ -39,28 +42,53 @@ public class GameController : MonoBehaviour {
 		_spawner.Initialize();
 		_timer.Initialize();
 		_map.Initialize();
-		NextCheckpoint(_map.checkpoints[0]);
-    }
+		_checkpointPanel.Initialize();
+		_timer.SetCheckpoint(_map.checkpoints[0]);
+	}
 
 	private void StartLevel() {
 		_player.movementEnabled = true;
 		distanceTraveled = 0f;
+		_currentState = GameState.RUNNING;
 	}
-	public void EndLevel(LevelEndReason reason)
-    {
+	public void EndLevel(LevelEndReason reason){
+		_currentState = GameState.LOADING;
+	}
 
-    }
+	private void PauseRunner(GameState state = GameState.MENU) {
+		_player.movementEnabled = false;
+		_currentState = state;
+	}
+
+	private void UnpauseRunner() {
+		_player.movementEnabled = true;
+		_currentState = GameState.RUNNING;
+	}
 
 	private void EnterShop() {
-		_player.movementEnabled = false;
+		
 		//Show shop UI
 	}
 
-	public void NextCheckpoint(Checkpoint nextCP){
-		_timer.SetCheckpoint(nextCP);
+	public void EnterCheckpoint() {
+		PauseRunner();
+		_checkpointPanel.OpenPanel();
+    }
+
+	public void ExitCheckpoint() {
+		_map.nextCheckpoint++;
+		_timer.SetCheckpoint(_map.checkpoints[_map.nextCheckpoint]);
+		UnpauseRunner();
 	}
 }
 
+public enum GameState
+{
+	LOADING,
+	RUNNING,
+	EVENT,
+	MENU
+}
 public enum LevelEndReason
 {
 	OUT_OF_TIME,

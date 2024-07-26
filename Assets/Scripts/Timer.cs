@@ -22,11 +22,12 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!initialized) { return; }
+        if(!initialized) return;
+        if (_gameController.currentState != GameState.RUNNING) return;
 
         if(timeLeft < 0)
         {
-            EndLevel();
+            _gameController.EndLevel(LevelEndReason.OUT_OF_TIME);
         }
 
         timeLeft -= Time.deltaTime;
@@ -46,11 +47,5 @@ public class Timer : MonoBehaviour
     private void UpdateTimeText()
     {
         textMesh.text = (timeLeft + "").Substring(0, 4);
-    }
-
-    private void EndLevel()
-    {
-        _gameController.EndLevel(LevelEndReason.OUT_OF_TIME);
-        initialized = false;
     }
 }

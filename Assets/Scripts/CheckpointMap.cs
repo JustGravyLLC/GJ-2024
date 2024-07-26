@@ -14,7 +14,7 @@ public class CheckpointMap : MonoBehaviour
     [SerializeField]
     public List<Checkpoint> checkpoints;
     
-    private int nextCheckpoint = 0;
+    public int nextCheckpoint = 0;
     private bool initialized = false;
 
     public void Initialize()
@@ -42,7 +42,8 @@ public class CheckpointMap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!initialized) { return;}
+        if (!initialized) return;
+        if (_gameController.currentState != GameState.RUNNING) return;
 
         //update avatar position based on distance traveled
         float l = _gameController.distanceTraveled / checkpoints[checkpoints.Count - 1].distance;
@@ -52,20 +53,18 @@ public class CheckpointMap : MonoBehaviour
         {
             if (nextCheckpoint == checkpoints.Count - 1)
             {
-                EndLevel();
+                WinLevel();
             }
             else
             {
-                _gameController.NextCheckpoint(checkpoints[nextCheckpoint + 1]);
-                nextCheckpoint++;
+                _gameController.EnterCheckpoint();
             }            
         }
     }
 
-    private void EndLevel()
+    private void WinLevel()
     {
         _gameController.EndLevel(LevelEndReason.LAST_CHECKPOINT);
-        initialized = false;
     }
 }
 
