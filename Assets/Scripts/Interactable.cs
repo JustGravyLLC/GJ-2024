@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
+    private GameController _gameController;
     private Spawner _spawner;
     public GameObject renderRoot;
     public ColliderObject colliderRoot;
 
-    public void Initialize(Spawner s)
+    public void Initialize(Spawner s, GameController gc)
     {
+        _gameController = gc;
         _spawner = s;
         renderRoot.SetActive(true);
         colliderRoot.gameObject.SetActive(true);
@@ -18,10 +20,9 @@ public class Interactable : MonoBehaviour
 
     public void OnInteract()
     {
+        _gameController.playerCharacter.HitSlowdown();
         Despawn();
     }
-
-
 
     public void Despawn()
     {

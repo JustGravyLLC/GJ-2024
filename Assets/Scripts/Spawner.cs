@@ -106,7 +106,7 @@ public class Spawner : MonoBehaviour
         Interactable newInteractable = GameObject.Instantiate<Interactable>(interactable);
         newInteractable.transform.parent = mount;
         newInteractable.transform.localPosition = pos;
-        newInteractable.Initialize(this);
+        newInteractable.Initialize(this, _gameController);
 
         return newInteractable;
     }

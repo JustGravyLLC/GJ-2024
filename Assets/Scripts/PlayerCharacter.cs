@@ -178,4 +178,9 @@ public class PlayerCharacter : MonoBehaviour {
 		//Sound
 		_moveSound.volume = Mathf.Lerp(MOVE_VOLUME_MIN, MOVE_VOLUME_MAX, Mathf.InverseLerp(_forwardVelocityMin, _forwardVelocityMax, _forwardVelocity));
 	}
+
+	public void HitSlowdown()
+    {
+		_forwardVelocity = forwardVelocity / 2f;
+    }
 }

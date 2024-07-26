@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 	[SerializeField]
 	private PlayerCharacter _player;
+	public PlayerCharacter playerCharacter => _player;
 	[SerializeField]
 	private Spawner _spawner;
 	[SerializeField]
