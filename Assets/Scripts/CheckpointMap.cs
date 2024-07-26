@@ -11,39 +11,70 @@ public class CheckpointMap : MonoBehaviour
     private GameController _gameController;
 
     public GameObject checkpointMarker;
-    public List<float> checkpoints;
+    [SerializeField]
+    public List<Checkpoint> checkpoints;
+    
     private int nextCheckpoint = 0;
+    private bool initialized = false;
 
     public void Initialize()
     {
         _gameController = GameObject.FindFirstObjectByType<GameController>();
 
-        float lastCheckpoint = checkpoints[checkpoints.Count - 1];
+        float lastCheckpoint = checkpoints[checkpoints.Count - 1].distance;
 
         //for each checkpoint, make a marker
-        foreach(float f in checkpoints)
+        foreach(Checkpoint checkpoint in checkpoints)
         {
             GameObject marker = Instantiate<GameObject>(checkpointMarker);
             marker.transform.parent = this.transform;
 
-            float x = f / lastCheckpoint;
-            x = x * (finishMount.position.x - startMount.position.x);
+            float x = checkpoint.distance / lastCheckpoint;
+            x = x * (finishMount.position.x - startMount.position.x) + startMount.position.x;
+            checkpoint.location = x;
 
-            marker.transform.position = new Vector2(x + startMount.position.x, this.transform.position.y);
+            marker.transform.position = new Vector2(x, this.transform.position.y);
         }
+
+        initialized = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!initialized) { return;}
+
         //update avatar position based on distance traveled
-        float l = _gameController.distanceTraveled / checkpoints[checkpoints.Count - 1];
+        float l = _gameController.distanceTraveled / checkpoints[checkpoints.Count - 1].distance;
         avatar.position = new Vector2(l * (finishMount.position.x - startMount.position.x) + startMount.position.x, this.transform.position.y) ;
 
-        if(_gameController.distanceTraveled > checkpoints[nextCheckpoint])
+        if(_gameController.distanceTraveled > checkpoints[nextCheckpoint].distance)
         {
-            Debug.Log("Checkpoint " + nextCheckpoint + " hit.");
-            nextCheckpoint++;
+            if (nextCheckpoint == checkpoints.Count - 1)
+            {
+                EndLevel();
+            }
+            else
+            {
+                _gameController.NextCheckpoint(checkpoints[nextCheckpoint + 1]);
+                nextCheckpoint++;
+            }            
         }
     }
+
+    private void EndLevel()
+    {
+        _gameController.EndLevel(LevelEndReason.LAST_CHECKPOINT);
+        initialized = false;
+    }
+}
+
+[System.Serializable]
+public class Checkpoint
+{
+    [SerializeField]
+    public float distance;
+    [SerializeField]
+    public float time;
+    public float location;
 }

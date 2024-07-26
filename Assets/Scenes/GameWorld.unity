@@ -401,6 +401,7 @@ MonoBehaviour:
   _player: {fileID: 352814688}
   _spawner: {fileID: 230168692}
   _map: {fileID: 315915703}
+  _timer: {fileID: 273254308}
   _scrollingTerrainMeshes:
   - {fileID: 87255803}
   - {fileID: 181588801}
@@ -429,6 +430,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59a4f4553666d4a4599872d04c16a8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &273254308 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3932906193201350503, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
+  m_PrefabInstance: {fileID: 6475245973686086339}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3731be6d3f290a547b8e8959dec9b440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &315915703 stripped
@@ -1062,6 +1074,34 @@ PrefabInstance:
     - target: {fileID: 3661834909237680025, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418713684711875778, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
+      propertyPath: checkpoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418713684711875778, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
+      propertyPath: checkpoints.Array.data[0].time
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418713684711875778, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
+      propertyPath: checkpoints.Array.data[1].time
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418713684711875778, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
+      propertyPath: checkpoints.Array.data[2].time
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418713684711875778, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
+      propertyPath: checkpoints.Array.data[0].distance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418713684711875778, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
+      propertyPath: checkpoints.Array.data[1].distance
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418713684711875778, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
+      propertyPath: checkpoints.Array.data[2].distance
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
