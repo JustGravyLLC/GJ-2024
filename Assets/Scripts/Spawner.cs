@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour
     public float mountW, mountD = 100f;
     public int mountCount = 5;
     public float speed = 1f;
+    private bool initialized = false;
 
     //Data
     private List<EnvironmentSet> _environmentSets;
@@ -23,14 +24,17 @@ public class Spawner : MonoBehaviour
         public List<Interactable> interactables;
     }
 
-    private void Start()
+    public void Initialize()
     {
         _environmentSets = new List<EnvironmentSet>();
         InitialSpawn();
+        initialized = true;
     }
 
     private void Update()
     {
+        if (!initialized) return;
+
         float offset = speed * Time.deltaTime * _playerCharacter.forwardVelocity;
         Vector3 d = new Vector3(0, 0, offset);
 
