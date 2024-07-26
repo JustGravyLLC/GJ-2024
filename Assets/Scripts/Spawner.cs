@@ -1,22 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SerializableDictionary.Scripts;
 
 public class Spawner : MonoBehaviour
 {
     //Refs
     public PlayerCharacter _playerCharacter;
-    public List<Interactable> interactablePrefabs;
+    public SerializableDictionary<Interactable, int> _interactableSpawnDictionary;
 
     //Fields
-    public int toSpawn = 8;
     public float mountW, mountD = 100f;
     public int mountCount = 5;
     public float speed = 1f;
 
     //Data
-    private List<Interactable> interactablesPool;
-    private List<EnvironmentSet> environmentSets;
+    private List<EnvironmentSet> _environmentSets;
 
     private struct EnvironmentSet
     {
@@ -26,8 +25,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        environmentSets = new List<EnvironmentSet>();
-        interactablesPool = new List<Interactable>();
+        _environmentSets = new List<EnvironmentSet>();
         InitialSpawn();
     }
 
@@ -36,29 +34,29 @@ public class Spawner : MonoBehaviour
         float offset = speed * Time.deltaTime * _playerCharacter.forwardVelocity;
         Vector3 d = new Vector3(0, 0, offset);
 
-        foreach(EnvironmentSet e in environmentSets)
+        foreach(EnvironmentSet e in _environmentSets)
         {
             e.mount.Translate(-d);
         }
     
 
-        Transform firstMount = environmentSets[0].mount;
+        Transform firstMount = _environmentSets[0].mount;
 
         if (firstMount.position.z < mountD * -1.5f)
         {
             //uninitialize the first mount and put it at the back
             foreach(Interactable i in firstMount.GetComponentsInChildren<Interactable>())
             {
-                PoolInteractable(i);
+                i.Despawn();
             }
 
-            EnvironmentSet es = environmentSets[0];
-            environmentSets.RemoveAt(0);
-            Vector3 v = new Vector3(0, 0, environmentSets[environmentSets.Count - 1].mount.position.z + mountD);
+            EnvironmentSet es = _environmentSets[0];
+            _environmentSets.RemoveAt(0);
+            Vector3 v = new Vector3(0, 0, _environmentSets[_environmentSets.Count - 1].mount.position.z + mountD);
             firstMount.position = v;
-            environmentSets.Add(es);
+            _environmentSets.Add(es);
 
-            SpawnOnMount(firstMount, toSpawn);
+            SpawnOnMount(firstMount);
         }
     }
 
@@ -70,23 +68,26 @@ public class Spawner : MonoBehaviour
 
             mount.parent = this.transform;
             mount.position = new Vector3(0, 0, mountD * i);
-            environmentSets.Add(new EnvironmentSet { mount = mount, interactables = new List<Interactable>()});
+            _environmentSets.Add(new EnvironmentSet { mount = mount, interactables = new List<Interactable>()});
 
-            SpawnOnMount(mount, toSpawn);
+            SpawnOnMount(mount);
         }
     }
 
-    private void SpawnOnMount(Transform mount, int count)
+    private void SpawnOnMount(Transform mount)
     {
         float x, z;
 
-        for (int i = 0; i < count; i++)
+        foreach(Interactable interactable in _interactableSpawnDictionary.Dictionary.Keys)
         {
-            x = Random.Range(-mountW, mountW);
-            z = Random.value * mountD;
+            for (int i = 0; i < _interactableSpawnDictionary.Get(interactable); i++)
+            {
+                x = Random.Range(-mountW, mountW);
+                z = Random.value * mountD;
 
-            Spawn(interactablePrefabs[0], mount, new Vector3(x, 0, z));
-        }       
+                Spawn(interactable, mount, new Vector3(x, 0, z));
+            }
+        }     
     }
 
     private Interactable Spawn(Interactable interactable, Transform mount, Vector3 pos)
@@ -97,26 +98,6 @@ public class Spawner : MonoBehaviour
         newInteractable.Initialize(this);
 
         return newInteractable;
-    }
-
-    public void PoolInteractable(Interactable i)
-    {
-        interactablesPool.Add(i);
-        i.Despawn();
-    }
-
-    private Interactable GetInteractable()
-    {
-        Interactable i;
-        if (interactablesPool.Count > 0)
-        {
-            i = interactablesPool[0];
-            interactablesPool.RemoveAt(0);
-        }else
-        {
-            i = GameObject.Instantiate<Interactable>(interactablePrefabs[0]);            
-        }
-        return i;
     }
 }
 

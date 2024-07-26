@@ -830,6 +830,26 @@ PrefabInstance:
       propertyPath: _playerCharacter
       value: 
       objectReference: {fileID: 352814688}
+    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
+      propertyPath: _interactableSpawnDictionary._pairs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
+      propertyPath: _interactableSpawnDictionary._pairs.Array.data[0]._key
+      value: 
+      objectReference: {fileID: 6929487540643437494, guid: b9226bf1e35c49042acbb506c004a44f, type: 3}
+    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
+      propertyPath: _interactableSpawnDictionary._pairs.Array.data[1]._key
+      value: 
+      objectReference: {fileID: 8266176555278308555, guid: 25c7c1adcc0739d4aa9295abdb9cf2ec, type: 3}
+    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
+      propertyPath: _interactableSpawnDictionary._pairs.Array.data[0]._value
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
+      propertyPath: _interactableSpawnDictionary._pairs.Array.data[1]._value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8130710023584031413, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
       propertyPath: m_Name
       value: Spawner

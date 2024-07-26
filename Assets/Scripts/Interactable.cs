@@ -13,11 +13,12 @@ public class Interactable : MonoBehaviour
         _spawner = s;
         renderRoot.SetActive(true);
         colliderRoot.gameObject.SetActive(true);
+        colliderRoot.Initialize(this);
     }
 
     public void OnInteract()
     {
-        _spawner.PoolInteractable(this);
+        Despawn();
     }
 
 

@@ -7,9 +7,10 @@ public class ColliderObject : MonoBehaviour
     Interactable parent;
     bool initialized = false;
 
-    private void Start()
+
+    public void Initialize(Interactable i)
     {
-        parent = this.transform.parent.GetComponent<Interactable>();
+        parent = i;
         initialized = true;
     }
 
@@ -20,4 +21,6 @@ public class ColliderObject : MonoBehaviour
             parent.OnInteract();
         }        
     }
+
+
 }
