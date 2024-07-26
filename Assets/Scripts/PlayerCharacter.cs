@@ -13,9 +13,10 @@ public class PlayerCharacter : MonoBehaviour {
 	private float _horizontalVelocity = 0f;
 
 	private float _forwardAcceleration = 2f;
-	private float _brakeDeceleration = 8f;
-	private float _horizontalAcceleration = 8f;
-	private float _horizontalDeceleration = 6f;
+	private float _brakeDecelerationBase = 0f;
+	private float _brakeDecelerationFull = 8f;
+	private float _horizontalAcceleration = 12f;
+	private float _horizontalDeceleration = 8f;
 
 	private float _forwardVelocityMin = .2f;
 	private float _forwardVelocityMax = 20f;
@@ -59,7 +60,7 @@ public class PlayerCharacter : MonoBehaviour {
 		//Brake
 		if (Input.GetKey(backKey)) {
 			if (_forwardVelocity > _forwardVelocityMin) {
-				_forwardVelocity = Mathf.Max(_forwardVelocity - _brakeDeceleration * Time.deltaTime, _forwardVelocityMin);
+				_forwardVelocity = Mathf.Max(_forwardVelocity - Mathf.Lerp(_brakeDecelerationBase, _brakeDecelerationFull, Mathf.Abs(sideInputFactor)) * Time.deltaTime, _forwardVelocityMin);
 			}
 		} else {
 			if (_forwardVelocity < _forwardVelocityMax) {
@@ -67,6 +68,7 @@ public class PlayerCharacter : MonoBehaviour {
 			}
 		}
 
+		//Side motion
 		if (_horizontalVelocity != 0f) {
 			Vector3 pos = transform.localPosition;
 			pos.x = Mathf.Clamp(pos.x + _horizontalVelocity * Time.deltaTime, _minX, _maxX);
