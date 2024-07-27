@@ -400,6 +400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 352814688}
   _spawner: {fileID: 230168692}
+  _UI: {fileID: 220635148}
   _map: {fileID: 315915703}
   _checkpointPanel: {fileID: 770851682}
   _timer: {fileID: 273254308}
@@ -422,6 +423,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &220635148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1732293972062173138, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
+  m_PrefabInstance: {fileID: 6475245973686086339}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa1424749c101d41983e3242bd9e68c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &230168692 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
@@ -720,11 +732,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1893096339 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1117673057446309676, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
-  m_PrefabInstance: {fileID: 6475245973686086339}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1903880704
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,17 +955,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _playerCharacter
+      propertyPath: _spawnParams.Array.data[0].interactables.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
+      propertyPath: _spawnParams.Array.data[0].interactables.Array.data[0]
       value: 
-      objectReference: {fileID: 352814688}
+      objectReference: {fileID: 482567077603890677, guid: dce6cdef5d133354692caa96767935a3, type: 3}
     - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _spawnParams.Array.data[0].horizontalMax
-      value: 22
-      objectReference: {fileID: 0}
+      propertyPath: _spawnParams.Array.data[0].interactables.Array.data[1]
+      value: 
+      objectReference: {fileID: 4850207486500720457, guid: 25c7c1adcc0739d4aa9295abdb9cf2ec, type: 3}
     - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _spawnParams.Array.data[0].horizontalMin
-      value: 15
-      objectReference: {fileID: 0}
+      propertyPath: _spawnParams.Array.data[0].interactables.Array.data[2]
+      value: 
+      objectReference: {fileID: 4850207486500720457, guid: 25c7c1adcc0739d4aa9295abdb9cf2ec, type: 3}
     - target: {fileID: 8130710023584031413, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
       propertyPath: m_Name
       value: Spawner
@@ -1060,10 +1071,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3903056180087397084, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
-      propertyPath: panelObject
-      value: 
-      objectReference: {fileID: 1893096339}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -47,11 +47,11 @@ MonoBehaviour:
   _playerCharacter: {fileID: 0}
   _spawnParams:
   - interactables:
-    - {fileID: 5779135010627048950, guid: 83a2db69e845b8d468a96a31f8b2cbf7, type: 3}
-    - {fileID: 8266176555278308555, guid: 25c7c1adcc0739d4aa9295abdb9cf2ec, type: 3}
+    - {fileID: 6353380118554226145, guid: 83a2db69e845b8d468a96a31f8b2cbf7, type: 3}
+    - {fileID: 4850207486500720457, guid: 25c7c1adcc0739d4aa9295abdb9cf2ec, type: 3}
     count: 1
-    horizontalMin: 10
-    horizontalMax: 20
+    horizontalMin: 15
+    horizontalMax: 22
   - interactables:
     - {fileID: 6929487540643437494, guid: b9226bf1e35c49042acbb506c004a44f, type: 3}
     count: 18

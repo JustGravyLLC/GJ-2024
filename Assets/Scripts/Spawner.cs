@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
 {
     //Refs
     private GameController _gameController;
-    public PlayerCharacter _playerCharacter;
+    private PlayerCharacter _playerCharacter;
     public List<SpawnParams> _spawnParams;
 
     //Fields
@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
     public void Initialize()
     {
         _gameController = GameObject.FindFirstObjectByType<GameController>();
-
+        _playerCharacter = _gameController.playerCharacter;
         _environmentSets = new List<EnvironmentSet>();
         InitialSpawn();
         initialized = true;
@@ -106,7 +106,7 @@ public class Spawner : MonoBehaviour
         Interactable newInteractable = GameObject.Instantiate<Interactable>(interactable);
         newInteractable.transform.parent = mount;
         newInteractable.transform.localPosition = pos;
-        newInteractable.Initialize(this);
+        newInteractable.Initialize(this, _gameController);
 
         return newInteractable;
     }
