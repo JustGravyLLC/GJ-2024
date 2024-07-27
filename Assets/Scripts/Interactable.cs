@@ -8,6 +8,7 @@ public class Interactable : MonoBehaviour
     private Spawner _spawner;
     public GameObject renderRoot;
     public ColliderObject colliderRoot;
+    public GameObject deathRoot;
 
     public void Initialize(Spawner s, GameController gc)
     {
@@ -22,16 +23,24 @@ public class Interactable : MonoBehaviour
     {
         _gameController.playerCharacter.HitSlowdown();
         Despawn();
+        Die();
     }
 
     public virtual void OnShoot(float damage)
     {
         Despawn();
+        Die();
     }
 
     public virtual void OnLeave(){}
 
-    public void Despawn()
+    public virtual void Die() {
+		if (deathRoot) {
+			deathRoot.SetActive(true);
+		}
+	}
+
+	public void Despawn()
     {
         renderRoot.SetActive(false);
         colliderRoot.gameObject.SetActive(false);
