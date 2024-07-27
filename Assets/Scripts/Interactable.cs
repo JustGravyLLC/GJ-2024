@@ -24,6 +24,11 @@ public class Interactable : MonoBehaviour
         Despawn();
     }
 
+    public virtual void OnShoot(float damage)
+    {
+        Debug.Log($"{gameObject.name} hit");
+    }
+
     public virtual void OnLeave(){}
 
     public void Despawn()
