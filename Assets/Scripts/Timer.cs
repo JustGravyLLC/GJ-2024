@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
     private TextMeshProUGUI textMesh;
     private bool initialized = false;
 
-    private float timeLeft = 60f;
+    private float timeLeft = 0f;
 
     public void Initialize()
     {
@@ -39,10 +39,7 @@ public class Timer : MonoBehaviour
         AddTime(cp.time);
         this.transform.position = new Vector2(cp.location, this.transform.position.y);
     }
-    private void SetTimer(float t)
-    {
-        timeLeft = t;
-    }
+
     public void AddTime(float t)
     {
         timeLeft += t;
@@ -51,6 +48,8 @@ public class Timer : MonoBehaviour
 
     private void UpdateTimeText()
     {
-        textMesh.text = (timeLeft + "").Substring(0, 4);
+        string s = timeLeft + "";
+        if(s.Length > 4)
+            textMesh.text = (timeLeft + "").Substring(0, 4);
     }
 }
