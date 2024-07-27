@@ -352,6 +352,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 3360488576235694575}
+  _weaponMount: {fileID: 341506659266122076}
+  _weapon: {fileID: 6897619026561158987}
   _moveSound: {fileID: 4546666306647017593}
   _brakeSound: {fileID: 6279243357219667634}
   _moveParticles:
@@ -15750,3 +15752,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1044265671712725539, guid: 257c1c5c7232f944fb4e359f5a80a52a, type: 3}
   m_PrefabInstance: {fileID: 6855163413526682814}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6897619026561158987 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 43678341250962421, guid: 257c1c5c7232f944fb4e359f5a80a52a, type: 3}
+  m_PrefabInstance: {fileID: 6855163413526682814}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc53dc2b0c8b234458189e9b1f2b5b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
