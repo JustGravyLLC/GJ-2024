@@ -27,7 +27,7 @@ public class CheckpointMap : MonoBehaviour
         foreach(Checkpoint checkpoint in checkpoints)
         {
             GameObject marker = Instantiate<GameObject>(checkpointMarker);
-            marker.transform.parent = this.transform;
+            marker.transform.SetParent(this.transform);
 
             float x = checkpoint.distance / lastCheckpoint;
             x = x * (finishMount.position.x - startMount.position.x) + startMount.position.x;
