@@ -5,6 +5,7 @@ public class BurstRifle : Weapon {
 	[SerializeField] protected float _roundPeriodSec = .2f;
 	[SerializeField] protected float _burstCooldownSec = .6f;
 	[SerializeField] protected float _maxRange = 30f;
+	[SerializeField] protected float _damagePerRound = 8f;
 
 	protected float _lastShotTime = -1f;
 	protected int _roundsRemaining = 0;
@@ -51,7 +52,7 @@ public class BurstRifle : Weapon {
 
 			Interactable target = hit.collider.GetComponentInParent<Interactable>();
             if (target) {
-				target.OnInteract();
+				target.OnShoot(_damagePerRound);
 			}
         } else {
 			Debug.DrawLine(ray.origin, ray.origin + (ray.direction * _maxRange), Color.red, _roundPeriodSec);
