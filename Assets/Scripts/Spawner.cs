@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
 {
     //Refs
     private GameController _gameController;
-    public PlayerCharacter _playerCharacter;
+    private PlayerCharacter _playerCharacter;
     public List<SpawnParams> _spawnParams;
 
     //Fields
@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
     public void Initialize()
     {
         _gameController = GameObject.FindFirstObjectByType<GameController>();
-
+        _playerCharacter = _gameController.playerCharacter;
         _environmentSets = new List<EnvironmentSet>();
         InitialSpawn();
         initialized = true;

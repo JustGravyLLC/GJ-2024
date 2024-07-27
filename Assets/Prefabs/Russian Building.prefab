@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 5288141525948252666}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6471534064594311516}
-  - component: {fileID: 8266176555278308555}
+  - component: {fileID: 4850207486500720457}
   m_Layer: 0
   m_Name: Russian Building
   m_TagString: Untagged
@@ -65,7 +65,7 @@ Transform:
   - {fileID: 8071097434458697309}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8266176555278308555
+--- !u!114 &4850207486500720457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7612938121488784932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0004998608bc254db5e503e92659e7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f34ea0b80ee924478a0ad00c8f39306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   renderRoot: {fileID: 5288141525948252666}

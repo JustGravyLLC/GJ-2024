@@ -8,6 +8,8 @@ public class UIController : MonoBehaviour
     private bool _initialized = false;
 
     [SerializeField]
+    private GameObject _eventScreen;
+    [SerializeField]
     private GameObject _winScreen;
     [SerializeField]
     private GameObject _loseScreen;
@@ -15,8 +17,20 @@ public class UIController : MonoBehaviour
     public void Initialize()
     {
         _gameController = FindFirstObjectByType<GameController>();
+        _eventScreen.SetActive(false);
         _winScreen.SetActive(false);
         _loseScreen.SetActive(false);
+    }
+
+    public void ShowEventPanel()
+    {
+        _eventScreen.SetActive(true);
+    }
+
+    public void CloseEventPanel()
+    {
+        _eventScreen.SetActive(false);
+        _gameController.ExitEvent();
     }
 
     public void ShowEndPanel(LevelEndReason reason)

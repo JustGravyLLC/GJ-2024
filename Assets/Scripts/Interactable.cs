@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    private GameController _gameController;
+    protected GameController _gameController;
     private Spawner _spawner;
     public GameObject renderRoot;
     public ColliderObject colliderRoot;
@@ -18,11 +18,13 @@ public class Interactable : MonoBehaviour
         colliderRoot.Initialize(this);
     }
 
-    public void OnInteract()
+    public virtual void OnInteract()
     {
         _gameController.playerCharacter.HitSlowdown();
         Despawn();
     }
+
+    public virtual void OnLeave(){}
 
     public void Despawn()
     {

@@ -70,10 +70,16 @@ public class GameController : MonoBehaviour {
 		_currentState = GameState.RUNNING;
 	}
 
-	private void EnterShop() {
-		
-		//Show shop UI
-	}
+	public void EnterEvent()
+    {
+		PauseRunner();
+		_UI.ShowEventPanel();
+    }
+
+	public void ExitEvent()
+    {
+		UnpauseRunner();
+    }
 
 	public void EnterCheckpoint() {
 		PauseRunner();

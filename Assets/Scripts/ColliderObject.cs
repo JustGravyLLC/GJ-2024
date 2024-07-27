@@ -22,5 +22,11 @@ public class ColliderObject : MonoBehaviour
         }        
     }
 
-
+    private void OnTriggerExit(Collider collider)
+    {
+        if (initialized)
+        {
+            parent.OnLeave();
+        }
+    }
 }
