@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BuildingInteractable : Interactable
 {
+    [SerializeField]
+    private float hp = 20;
     override public void OnInteract()
     {
         _gameController.playerCharacter.HitSlowdown(10f);
@@ -12,5 +14,10 @@ public class BuildingInteractable : Interactable
 
     public override void OnShoot(float damage)
     {
+        hp -= damage;
+        if(hp <= 0)
+        {
+            Despawn();
+        }
     }
 }
