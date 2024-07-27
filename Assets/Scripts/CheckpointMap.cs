@@ -19,6 +19,8 @@ public class CheckpointMap : MonoBehaviour
 
     public void Initialize()
     {
+        if (initialized) return;
+
         _gameController = GameObject.FindFirstObjectByType<GameController>();
 
         float lastCheckpoint = checkpoints[checkpoints.Count - 1].distance;
@@ -65,6 +67,11 @@ public class CheckpointMap : MonoBehaviour
     private void WinLevel()
     {
         _gameController.EndLevel(LevelEndReason.LAST_CHECKPOINT);
+    }
+
+    public void Restart()
+    {
+        nextCheckpoint = 0;
     }
 }
 

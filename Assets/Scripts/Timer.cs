@@ -14,6 +14,7 @@ public class Timer : MonoBehaviour
 
     public void Initialize()
     {
+        if (initialized) return;
         _gameController = FindFirstObjectByType<GameController>();
 
         initialized = true;
@@ -34,7 +35,14 @@ public class Timer : MonoBehaviour
         UpdateTimeText();
     }
 
-    public void SetCheckpoint(Checkpoint cp)
+    public void StartLevel(Checkpoint cp)
+    {
+        timeLeft = 0f;
+        NewCheckpoint(cp);
+        UpdateTimeText();
+    }
+
+    public void NewCheckpoint(Checkpoint cp)
     {
         AddTime(cp.time);
         this.transform.position = new Vector2(cp.location, this.transform.position.y);

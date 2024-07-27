@@ -48,10 +48,10 @@ public class GameController : MonoBehaviour {
 		_UI.Initialize();
 		_map.Initialize();
 		_checkpointPanel.Initialize();
-		_timer.SetCheckpoint(_map.checkpoints[0]);
 	}
 
 	private void StartLevel() {
+		_timer.StartLevel(_map.checkpoints[0]);
 		_player.movementEnabled = true;
 		distanceTraveled = 0f;
 		_currentState = GameState.RUNNING;
@@ -94,9 +94,17 @@ public class GameController : MonoBehaviour {
 
 	public void ExitCheckpoint() {
 		_map.nextCheckpoint++;
-		_timer.SetCheckpoint(_map.checkpoints[_map.nextCheckpoint]);
+		_timer.NewCheckpoint(_map.checkpoints[_map.nextCheckpoint]);
 		UnpauseRunner();
 	}
+
+	public void RestartGame()
+    {
+		_spawner.Restart();
+		_UI.Restart();
+		_map.Restart();
+		StartLevel();
+    }
 }
 
 public enum GameState

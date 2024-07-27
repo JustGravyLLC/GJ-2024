@@ -63,7 +63,7 @@ public class Spawner : MonoBehaviour
             firstMount.position = v;
             _environmentSets.Add(es);
 
-            SpawnOnMount(firstMount);
+            SpawnOnMount(es);
         }
     }
 
@@ -75,13 +75,14 @@ public class Spawner : MonoBehaviour
 
             mount.parent = this.transform;
             mount.position = new Vector3(0, 0, mountD * i);
-            _environmentSets.Add(new EnvironmentSet { mount = mount, interactables = new List<Interactable>()});
+            EnvironmentSet es = new EnvironmentSet { mount = mount, interactables = new List<Interactable>() };
+            _environmentSets.Add(es);
 
-            SpawnOnMount(mount);
+            SpawnOnMount(es);
         }
     }
 
-    private void SpawnOnMount(Transform mount)
+    private void SpawnOnMount(EnvironmentSet es)
     {
         float x, z;
 
@@ -96,19 +97,34 @@ public class Spawner : MonoBehaviour
                 x = x * (Random.Range(0, 2) * 2 - 1);
                 z = Random.value * mountD * .9f;
 
-                Spawn(interactable, mount, new Vector3(x, 0, z));
+                Spawn(interactable, es, new Vector3(x, 0, z));
             }            
         }        
     }
 
-    private Interactable Spawn(Interactable interactable, Transform mount, Vector3 pos)
+    private Interactable Spawn(Interactable interactable, EnvironmentSet es, Vector3 pos)
     {
         Interactable newInteractable = GameObject.Instantiate<Interactable>(interactable);
-        newInteractable.transform.parent = mount;
+        newInteractable.transform.parent = es.mount;
         newInteractable.transform.localPosition = pos;
         newInteractable.Initialize(this, _gameController);
 
+        es.interactables.Add(newInteractable);
+
         return newInteractable;
+    }
+
+    public void Restart()
+    {
+        foreach(EnvironmentSet es in _environmentSets)
+        {
+            foreach(Interactable i in es.interactables)
+            {
+                i.Despawn();
+            }
+        }
+
+        InitialSpawn();
     }
 }
 

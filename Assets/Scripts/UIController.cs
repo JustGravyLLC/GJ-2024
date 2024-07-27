@@ -19,6 +19,8 @@ public class UIController : MonoBehaviour
 
     public void Initialize()
     {
+        if (_initialized) return;
+
         _gameController = FindFirstObjectByType<GameController>();
         _eventScreen.SetActive(false);
         _winScreen.SetActive(false);
@@ -57,5 +59,10 @@ public class UIController : MonoBehaviour
     {
         _winScreen.SetActive(false);
         _loseScreen.SetActive(false);
+    }
+
+    public void Restart()
+    {
+
     }
 }

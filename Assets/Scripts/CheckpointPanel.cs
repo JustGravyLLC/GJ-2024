@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class CheckpointPanel : MonoBehaviour
 {
+    private bool _initialized = false;
     private GameController _gameController;
     
     public GameObject panelObject;
 
     public void Initialize()
     {
+        if (_initialized) return;
+
         _gameController = FindFirstObjectByType<GameController>();
         panelObject.SetActive(false);
+
+        _initialized = true;
     }
 
     public void OpenPanel()
