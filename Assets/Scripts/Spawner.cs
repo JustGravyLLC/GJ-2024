@@ -121,7 +121,14 @@ public class Spawner : MonoBehaviour
             foreach(Interactable i in es.interactables)
             {
                 i.Despawn();
+                Destroy(i.gameObject);
             }
+            Destroy(es.mount.gameObject);
+        }
+
+        while(_environmentSets.Count > 0)
+        {
+            _environmentSets.RemoveAt(0);
         }
 
         InitialSpawn();
