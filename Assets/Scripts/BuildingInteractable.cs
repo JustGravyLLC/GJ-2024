@@ -10,6 +10,7 @@ public class BuildingInteractable : Interactable
     {
         _gameController.playerCharacter.HitSlowdown(10f);
         Despawn();
+        Die();
     }
 
     public override void OnShoot(float damage)
@@ -18,6 +19,7 @@ public class BuildingInteractable : Interactable
         if(hp <= 0)
         {
             Despawn();
+            Die();
         }
     }
 }
