@@ -5,10 +5,26 @@ public abstract class Weapon : MonoBehaviour {
 
 	[SerializeField]
 	protected Transform _firePoint;
+	private bool _firingEnabled = true;
 
 	protected virtual bool isFiring { get; private set; } = false;
+	public bool firingEnabled {
+		get { return _firingEnabled; }
+		set {
+			if (_firingEnabled == value)
+				return;
+
+			_firingEnabled = value;
+			if (!value && isFiring) {
+				StopFiring();
+			}
+		}
+	}
 
 	protected virtual void Update() {
+		if (!firingEnabled)
+			return;
+
 		bool wasFiring = isFiring;
 
 		if (Input.GetKeyDown(fireKey)) {

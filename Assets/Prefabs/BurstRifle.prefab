@@ -132,8 +132,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 15539057608508232}
   _roundsPerBurst: 3
-  _roundPeriodSec: 0.2
-  _burstCooldownSec: 0.6
+  _roundPeriodSec: 0.1
+  _burstCooldownSec: 0.8
+  _maxRange: 30
 --- !u!1 &6054354571582900452
 GameObject:
   m_ObjectHideFlags: 0

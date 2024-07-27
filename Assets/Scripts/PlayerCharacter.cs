@@ -39,6 +39,10 @@ public class PlayerCharacter : MonoBehaviour {
 	[SerializeField]
 	private Animator _anim;
 	[SerializeField]
+	private Transform _weaponMount;
+	[SerializeField]
+	private Weapon _weapon;
+	[SerializeField]
 	private AudioSource _moveSound;
 	[SerializeField]
 	private AudioSource _brakeSound;
@@ -76,6 +80,10 @@ public class PlayerCharacter : MonoBehaviour {
 				foreach (ParticleSystem emitter in _brakeParticles) {
 					emitter.Pause();
 				}
+			}
+
+			if (_weapon) {
+				_weapon.firingEnabled = value;
 			}
 		}
 	}
