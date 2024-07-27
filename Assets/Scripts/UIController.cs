@@ -23,6 +23,7 @@ public class UIController : MonoBehaviour
         _eventScreen.SetActive(false);
         _winScreen.SetActive(false);
         _loseScreen.SetActive(false);
+        _initialized = true;
     }
 
     public void ShowEventPanel()

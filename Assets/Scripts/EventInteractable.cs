@@ -8,6 +8,10 @@ public class EventInteractable : Interactable
     private bool inside = false;
     private float _minSpeed = 5f;
 
+    public override void OnShoot(float damage)
+    {
+    }
+
     public override void OnInteract()
     {
         inside = true;
