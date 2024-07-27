@@ -44,10 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a4f4553666d4a4599872d04c16a8e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerCharacter: {fileID: 0}
   _spawnParams:
   - interactables:
-    - {fileID: 6353380118554226145, guid: 83a2db69e845b8d468a96a31f8b2cbf7, type: 3}
+    - {fileID: 5090345672693708313, guid: dce6cdef5d133354692caa96767935a3, type: 3}
     - {fileID: 4850207486500720457, guid: 25c7c1adcc0739d4aa9295abdb9cf2ec, type: 3}
     count: 1
     horizontalMin: 15

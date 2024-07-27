@@ -36,12 +36,17 @@ public class Timer : MonoBehaviour
 
     public void SetCheckpoint(Checkpoint cp)
     {
-        SetTimer(cp.time);
+        AddTime(cp.time);
         this.transform.position = new Vector2(cp.location, this.transform.position.y);
     }
-    public void SetTimer(float t)
+    private void SetTimer(float t)
     {
         timeLeft = t;
+    }
+    public void AddTime(float t)
+    {
+        timeLeft += t;
+        UpdateTimeText();
     }
 
     private void UpdateTimeText()

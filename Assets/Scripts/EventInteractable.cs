@@ -27,7 +27,12 @@ public class EventInteractable : Interactable
         if(_gameController.playerCharacter.forwardVelocity < _minSpeed)
         {
             interacted = true;
-            _gameController.EnterEvent();
+            EnterEvent();   
         }
+    }
+
+    protected virtual void EnterEvent()
+    {
+        _gameController.EnterEvent();
     }
 }

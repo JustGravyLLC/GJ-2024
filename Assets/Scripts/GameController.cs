@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour {
 	private CheckpointPanel _checkpointPanel;
 	[SerializeField]
 	private Timer _timer;
+	public Timer timer => _timer;
 	[SerializeField]
 	private List<MeshRenderer> _scrollingTerrainMeshes;
 	private GameState _currentState = GameState.LOADING;
@@ -70,11 +71,16 @@ public class GameController : MonoBehaviour {
 		_currentState = GameState.RUNNING;
 	}
 
-	public void EnterEvent()
+	public void EnterEvent(string text)
     {
 		PauseRunner();
-		_UI.ShowEventPanel();
+		_UI.ShowEventPanel(text);
     }
+	public void EnterEvent()
+	{
+		PauseRunner();
+		_UI.ShowEventPanel();
+	}
 
 	public void ExitEvent()
     {

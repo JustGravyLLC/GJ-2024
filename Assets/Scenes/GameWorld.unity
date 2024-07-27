@@ -954,22 +954,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _spawnParams.Array.data[0].interactables.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _spawnParams.Array.data[0].interactables.Array.data[0]
-      value: 
-      objectReference: {fileID: 482567077603890677, guid: dce6cdef5d133354692caa96767935a3, type: 3}
-    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _spawnParams.Array.data[0].interactables.Array.data[1]
-      value: 
-      objectReference: {fileID: 4850207486500720457, guid: 25c7c1adcc0739d4aa9295abdb9cf2ec, type: 3}
-    - target: {fileID: 7854815672023712931, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
-      propertyPath: _spawnParams.Array.data[0].interactables.Array.data[2]
-      value: 
-      objectReference: {fileID: 4850207486500720457, guid: 25c7c1adcc0739d4aa9295abdb9cf2ec, type: 3}
     - target: {fileID: 8130710023584031413, guid: 4c129f0fa38acba48b74833cda0e3ac8, type: 3}
       propertyPath: m_Name
       value: Spawner
@@ -1069,6 +1053,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3661834909237680025, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965695512598185523, guid: d65bad8d6f7d94049af06bcbb98f4322, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

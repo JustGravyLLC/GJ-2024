@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class UIController : MonoBehaviour
 
     [SerializeField]
     private GameObject _eventScreen;
+    [SerializeField]
+    private TextMeshProUGUI _eventText;
     [SerializeField]
     private GameObject _winScreen;
     [SerializeField]
@@ -25,6 +28,11 @@ public class UIController : MonoBehaviour
     public void ShowEventPanel()
     {
         _eventScreen.SetActive(true);
+    }
+    public void ShowEventPanel(string text)
+    {
+        ShowEventPanel();
+        _eventText.text = text;
     }
 
     public void CloseEventPanel()
