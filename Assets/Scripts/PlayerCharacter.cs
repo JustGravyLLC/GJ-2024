@@ -14,10 +14,11 @@ public class PlayerCharacter : MonoBehaviour {
 	private const float MOVE_PARTICLE_RATE_MAX = 300f;
 	private const float BRAKE_PARTICLE_RATE_MAX = 300f;
 
-	private static KeyCode leftKey => KeyCode.A;
-	private static KeyCode rightKey => KeyCode.D;
-	private static KeyCode backKey => KeyCode.S;
-	private static KeyCode forwardKey => KeyCode.W;
+	public static KeyCode leftKey => KeyCode.A;
+	public static KeyCode rightKey => KeyCode.D;
+	public static KeyCode backKey => KeyCode.S;
+	public static KeyCode forwardKey => KeyCode.W;
+	public static KeyCode fireKey => KeyCode.Mouse0;
 
 	private static float _minX = -20f;
 	private static float _maxX = 20f;
